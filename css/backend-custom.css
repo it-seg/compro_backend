@@ -1,0 +1,29 @@
+/* ===============================
+   FIX SIDEBAR & CONTENT FLEX
+================================ */
+
+#sidebar {
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+  flex-shrink: 0;
+}
+
+#content {
+  min-width: 0; /* 🔥 PALING PENTING */
+}
+
+/* ===============================
+   FIX CGridView / TABLE
+================================ */
+
+.grid-view table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.grid-view th,
+.grid-view td {
+  word-break: break-word;
+  white-space: normal;
+}

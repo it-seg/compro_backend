@@ -1,0 +1,74 @@
+<?php
+define('DB_WEBSITE', 'egor_website');
+
+return array(
+    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
+    'name' => 'Egor App',
+
+    'preload' => array('log'),
+
+    'import' => array(
+        'application.models.*',
+        'application.components.*',
+        'application.controllers.*',
+    ),
+
+    'modules' => [
+        'website',
+    ],
+
+    'defaultController' => 'site',
+
+    'components' => array(
+        'session' => [
+            'class' => 'CDbHttpSession',
+            'connectionID' => 'db',
+            'sessionTableName' => 'yii_session',
+            'autoCreateSessionTable' => false,
+            'sessionName' => 'EGORAPPSESSID',
+            'timeout' => 1800, // 30 menit
+            'cookieMode' => 'allow',
+            'cookieParams' => [
+                'lifetime' => 1800,   // sesi habis dalam 30 menit
+                'httponly' => true,
+            ],
+        ],
+        'db' => array(
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;port=3307;dbname=egor_app',
+            'username' => 'rCpp9uvJpztw',
+            'password' => 'feZHrlnzcx+l7E0M',
+            'charset' => 'utf8',
+        ),
+        'db_website' => array(
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=localhost;port=3307;dbname='.DB_WEBSITE,
+            'username' => 'rCpp9uvJpztw',
+            'password' => 'feZHrlnzcx+l7E0M',
+            'charset' => 'utf8',
+        ),
+        'user' => array(
+            'allowAutoLogin' => true,
+            'loginUrl' => array('site/login'),
+        ),
+        'errorHandler'=>array(
+            'errorAction'=>'site/error',
+        ),
+        'log'=>array(
+            'class'=>'CLogRouter',
+            'routes'=>array(
+                array(
+                    'class'=>'CFileLogRoute',
+                    'levels'=>'error, warning',
+                ),
+            ),
+        ),
+    ),
+    'params' => array(
+        'websiteImagePath' => [
+            'linux' => '/var/www/'.DB_WEBSITE.'/images',
+            'windows' => dirname(dirname(__DIR__)) . '/../'.DB_WEBSITE.'/images',
+        ],
+        'websiteImageUrl' => '/'.DB_WEBSITE.'/images',
+    ),
+);

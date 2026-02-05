@@ -1,0 +1,12 @@
+/* Quill Font Mapping */
+.ql-font-sans-serif {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ql-font-serif {
+    font-family: "Times New Roman", serif;
+}
+
+.ql-font-monospace {
+    font-family: "Courier New", monospace;
+}

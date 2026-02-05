@@ -67,7 +67,7 @@ $canWebsiteSetting =
         <button class="btn btn-outline-light me-2 d-md-none" id="sidebarToggle">
             <i class="bi bi-list"></i>
         </button>
-        <span class="navbar-brand">Egor App</span>
+        <span class="navbar-brand">Dashboard</span>
 
         <div class="ms-auto">
             <a href="<?= Yii::app()->createUrl('users/update', ['id'=>Yii::app()->user->id,'action'=>'change-password']) ?>"

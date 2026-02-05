@@ -57,7 +57,8 @@ $canWebsiteSetting =
     AuthHelper::can('WEBSITEIMAGES') ||
     AuthHelper::can('WEBSITE|SETTING') ||
     AuthHelper::can('WEBSITE|HEADER') ||
-    AuthHelper::can('WEBSITE|NAVIGATION');
+    AuthHelper::can('WEBSITE|NAVIGATION')||
+    AuthHelper::can('WEBSITE|HOMEPAGE');
 ?>
 
 <?php if (!$isLoginPage): ?>
@@ -262,6 +263,15 @@ $canWebsiteSetting =
                                             <a class="nav-link <?= $controllerId==='navigation'?'active':'' ?>"
                                                href="<?= Yii::app()->createUrl('website/navigation/index') ?>">
                                                 Navigation
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <?php if (AuthHelper::can('WEBSITE|HOMEPAGE')): ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link <?= $controllerId==='homepage'?'active':'' ?>"
+                                               href="<?= Yii::app()->createUrl('website/homepage/index') ?>">
+                                                Homepage
                                             </a>
                                         </li>
                                     <?php endif; ?>

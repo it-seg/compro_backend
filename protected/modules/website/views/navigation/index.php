@@ -21,6 +21,20 @@
         'label',
         'label_ind',
         'url',
+        [
+            'name' => 'is_active',
+            'type' => 'raw',
+            'filter' => [
+                1 => 'Active',
+                0 => 'Non Active',
+            ],
+            'value' => function($data) {
+                return $data->is_active == 1
+                    ? '<span class="badge bg-success">Aktif</span>'
+                    : '<span class="badge bg-danger">Tidak Aktif</span>';
+            },
+        ],
+
         'sort_order',
         [
             'class'=>'CButtonColumn',

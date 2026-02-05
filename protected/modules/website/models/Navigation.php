@@ -17,7 +17,7 @@ class Navigation extends CActiveRecord
             ['label', 'length', 'max'=>100],
             ['url', 'length', 'max'=>200],
             ['sort_order', 'numerical', 'integerOnly'=>true],
-            ['id, label, url, sort_order', 'safe', 'on'=>'search'],
+            ['id, label, url, sort_order, is_active', 'safe', 'on'=>'search'],
         ];
     }
 

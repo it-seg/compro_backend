@@ -44,7 +44,8 @@ class Setting extends CActiveRecord
             'tiktok_username',
             'instagram__username',
             'facebook_username',
-            'logo'
+            'logo',
+            'hero_interval'
         ];
         $criteria->addNotInCondition('`key`', $excludeTypes);
 

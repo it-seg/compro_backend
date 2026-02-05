@@ -10,9 +10,10 @@ $grouped = [
     ],
 
     'Website Setting' => [
-        'Setting' => ['WEBSITE|SETTING', 'WEBSITE|SETTING|CREATE'],
-        'Header' => ['WEBSITE|HEADER', 'WEBSITE|HEADER|CREATE'],
-        'Navigation' => ['WEBSITE|NAVIGATION', 'WEBSITE|NAVIGATION|CREATE'],
+        'Setting' => ['WEBSITE|SETTING', 'WEBSITE|SETTING|UPDATE'],
+        'Header' => ['WEBSITE|HEADER', 'WEBSITE|HEADER|UPDATE'],
+        'Navigation' => ['WEBSITE|NAVIGATION', 'WEBSITE|NAVIGATION|UPDATE'],
+        'Homepage' => ['WEBSITE|HOMEPAGE', 'WEBSITE|HOMEPAGE|UPDATE'],
         'Image' => [
             'WEBSITEIMAGES',
             'WEBSITEIMAGES|UPLOAD',

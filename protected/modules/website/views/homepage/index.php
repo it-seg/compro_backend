@@ -20,10 +20,7 @@
         'filter' => $model,
         'itemsCssClass' => 'table table-bordered table-striped',
         'columns' => [
-            [
-                'name' => 'section_key',
-                'header' => 'Section',
-            ],
+            'section_key',
             [
                 'name' => 'is_active',
                 'type' => 'raw',
@@ -37,20 +34,15 @@
                         : '<span class="badge bg-danger">Tidak Aktif</span>';
                 },
             ],
-            [
-                'name' => 'sort_order',
-                'header' => 'Sort',
-            ],
+            'sort_order',
             [
                 'class' => 'CButtonColumn',
                 'template' => '{update}',
                 'buttons' => [
                     'update' => [
                         'label' => 'Edit',
-                        'url' => 'Yii::app()->createUrl("homepage/update", ["id"=>$data->id])',
-                        'options' => [
-                            'class' => 'btn btn-sm btn-warning',
-                        ],
+                        'url' => 'Yii::app()->createUrl("website/homepage/update", ["id"=>$data->id])',
+                        'options' => ['class' => 'btn btn-sm btn-warning'],
                     ],
                 ],
             ],

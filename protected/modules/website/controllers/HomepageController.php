@@ -10,17 +10,36 @@ class HomepageController extends Controller
     }
 
 
-    public function actionUpdate($id)
+    public function actionCreate()
     {
-        $model = Homepage::model()->findByPk($id);
-        if (!$model) throw new CHttpException(404, 'Not found');
+        $model = new Homepage;
+
         if (isset($_POST['Homepage'])) {
             $model->attributes = $_POST['Homepage'];
             if ($model->save()) {
-                Yii::app()->user->setFlash('success', 'Homepage updated.');
+                Yii::app()->user->setFlash('success', 'Homepage section created.');
                 $this->redirect(['index']);
             }
         }
+
+        $this->render('create', ['model' => $model]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = Homepage::model()->findByPk($id);
+        if (!$model) {
+            throw new CHttpException(404, 'Data not found');
+        }
+
+        if (isset($_POST['Homepage'])) {
+            $model->attributes = $_POST['Homepage'];
+            if ($model->save()) {
+                Yii::app()->user->setFlash('success', 'Homepage section updated.');
+                $this->redirect(['index']);
+            }
+        }
+
         $this->render('create', ['model' => $model]);
     }
 

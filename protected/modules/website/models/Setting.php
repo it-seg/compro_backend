@@ -118,4 +118,6 @@ class Setting extends CActiveRecord
 
         return $value;
     }
+
+
 }

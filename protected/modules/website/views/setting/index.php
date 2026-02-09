@@ -50,14 +50,11 @@ $groups = [
                             <!-- Edit Button -->
                             <div class="text-end">
                                 <a href="<?= $this->createUrl('update', ['id'=>$bg1->id]) ?>"
-                                   class="btn btn-sm btn-warning mb-1">
-                                    Edit 1
-                                </a><br>
-                                <a href="<?= $this->createUrl('update', ['id'=>$bg2->id]) ?>"
                                    class="btn btn-sm btn-warning">
-                                    Edit 2
+                                    Edit
                                 </a>
                             </div>
+
                         </div>
 
                     </div>

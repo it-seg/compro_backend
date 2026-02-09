@@ -12,10 +12,6 @@
     </a>
 <?php endif; ?>
 
-<?php
-/*$data = $model->search()->getData();
-$aaa = 1;
-*/?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', [
     'id'=>'header-grid',

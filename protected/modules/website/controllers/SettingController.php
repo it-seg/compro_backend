@@ -37,9 +37,30 @@ class SettingController extends Controller
 
     public function actionIndex()
     {
-        $model = new Setting('search');
-        $model->unsetAttributes();
-        if (isset($_GET['Setting'])) $model->attributes = $_GET['Setting'];
-        $this->render('index', ['model' => $model]);
+        $settings = Setting::model()->findAll();
+
+        $grouped = [];
+        foreach ($settings as $s) {
+            $grouped[$s->key] = $s;
+        }
+
+        $this->render('index', [
+            'settings' => $grouped,
+        ]);
     }
+
+    public function actionGetBgPair()
+    {
+        $key = Yii::app()->request->getQuery('key');
+        $model = Setting::model()->findByAttributes(['key' => $key]);
+
+        header('Content-Type: application/json');
+        echo json_encode([
+            'value' => $model ? $model->value : null
+        ]);
+        Yii::app()->end();
+    }
+
+
+
 }

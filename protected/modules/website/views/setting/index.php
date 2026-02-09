@@ -1,88 +1,69 @@
-<div class="container mt-3">
+<?php
+$groups = [
+    'About'   => ['about_bg_1', 'about_bg_2'],
+    'Contact' => ['contact_bg_1', 'contact_bg_2'],
+    'Event'   => ['event_bg_1', 'event_bg_2'],
+    'Footer'  => ['footer_bg_1', 'footer_bg_2'],
+    'Gallery' => ['gallery_bg_1', 'gallery_bg_2'],
+    'Menu'    => ['menu_bg_1', 'menu_bg_2'],
+    'Music'   => ['music_bg_1', 'music_bg_2'],
+    'News'    => ['news_bg_1', 'news_bg_2'],
+    'Space'   => ['space_bg_1', 'space_bg_2'],
+];
+?>
 
-<?php if (Yii::app()->user->hasFlash('success')): ?>
-    <div class="alert alert-success"><?php echo Yii::app()->user->getFlash('success'); ?></div>
-<?php endif; ?>
+<div class="container mt-4">
+    <h3 class="mb-4">Setting Color & Style Background</h3>
 
-<h3 class="mb-3">Setting Color & Style Background</h3>
+    <div class="row">
+        <?php foreach ($groups as $title => $keys):
+            $bg1 = isset($settings[$keys[0]]) ? $settings[$keys[0]] : null;
+            $bg2 = isset($settings[$keys[1]]) ? $settings[$keys[1]] : null;
 
-<?php if (AuthHelper::can('WEBSITE|SETTING|CREATE')): ?>
-    <a href="<?php echo $this->createUrl('create'); ?>" class="btn btn-primary mb-3">
-        <i class="bi bi-plus-circle"></i> Create
-    </a>
-<?php endif; ?>
+            if (!$bg1 || !$bg2) continue;
+            ?>
 
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
 
-<?php $this->widget('zii.widgets.grid.CGridView', [
-    'id'=>'header-grid',
-    'dataProvider'=>$model->search(),
-    'filter'=>$model,
-    'itemsCssClass'=>'table table-bordered table-striped',
-    'columns'=>[
-        ['name'=>'key','type'=>'raw','value'=>'CHtml::encode($data->key)'],
-        [
-            'name' => 'value',
-            'type' => 'raw',
-            'value' => '
-        (preg_match("/^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$/", $data->value))
-        ? 
-        "<div style=\"display:flex;align-items:center;gap:10px\">
-            <div style=\"
-                width:32px;
-                height:32px;
-                background:{$data->value};
-                border:1px solid #ccc;
-                border-radius:4px;
-            \"></div>
-            <code>{$data->value}</code>
-        </div>"
-        :
-        (
-            (stripos($data->key, \'font\') !== false)
-            ?
-            "<div>
-                <div style=\"
-                    font-family:{$data->value};
-                    font-size:16px;
-                \">
-                    Aa Bb Cc
+                        <h5 class="mb-3"><?= CHtml::encode($title) ?> Page</h5>
+
+                        <!-- Gradient Preview -->
+                        <div style="
+                                height:120px;
+                                border-radius:8px;
+                                background: linear-gradient(180deg, <?= $bg1->value ?>, <?= $bg2->value ?>);
+                                border:1px solid #ddd;
+                                margin-bottom:12px;
+                                "></div>
+
+                        <!-- Color Info -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small><?= $bg1->key ?>:</small>
+                                <code><?= $bg1->value ?></code><br>
+                                <small><?= $bg2->key ?>:</small>
+                                <code><?= $bg2->value ?></code>
+                            </div>
+
+                            <!-- Edit Button -->
+                            <div class="text-end">
+                                <a href="<?= $this->createUrl('update', ['id'=>$bg1->id]) ?>"
+                                   class="btn btn-sm btn-warning mb-1">
+                                    Edit 1
+                                </a><br>
+                                <a href="<?= $this->createUrl('update', ['id'=>$bg2->id]) ?>"
+                                   class="btn btn-sm btn-warning">
+                                    Edit 2
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <small class=\"text-muted\">{$data->value}</small>
-            </div>"
-            :
-            (
-                (stripos($data->key, \'radius\') !== false)
-                ?
-                "<div>
-                    <div style=\"
-                        width:60px;
-                        height:32px;
-                        background:#e9ecef;
-                        border-radius:{$data->value};
-                        border:1px solid #ccc;
-                        margin-bottom:4px;
-                    \"></div>
-                    <small>{$data->value}</small>
-                </div>"
-                :
-                CHtml::encode($data->value)
-            )
-        )
-    ',
-        ],
+            </div>
 
-        [
-            'class'=>'CButtonColumn',
-            'template'=>'{update}',
-            'buttons'=>[
-                'update'=>[
-                    'label'=>'Edit',
-                    'url'=>'Yii::app()->createUrl("website/setting/update", ["id"=>$data->id])',
-                    'options'=>['class'=>'btn btn-sm btn-warning'],
-                ],
-            ],
-        ],
-    ],
-]); ?>
-
+        <?php endforeach; ?>
+    </div>
 </div>

@@ -65,4 +65,57 @@ class Setting extends CActiveRecord
         }
         return false;
     }
+
+    public function getValuePreview()
+    {
+        $key   = $this->key;
+        $value = CHtml::encode($this->value);
+
+        // === Gradient (_bg_1 + _bg_2) ===
+        if (preg_match('/_bg_1$/', $key)) {
+
+            $pairKey = str_replace('_bg_1', '_bg_2', $key);
+
+            $pair = self::model()->findByAttributes(['key' => $pairKey]);
+
+            if ($pair) {
+                $color1 = $value;
+                $color2 = CHtml::encode($pair->value);
+
+                return "
+                    <div style='display:flex;align-items:center;gap:12px'>
+                        <div style='
+                            width:120px;
+                            height:36px;
+                            background: linear-gradient(180deg, {$color1}, {$color2});
+                            border:1px solid #ccc;
+                            border-radius:6px;
+                        '></div>
+                        <div>
+                            <code>{$color1}</code><br>
+                            <code>{$color2}</code>
+                        </div>
+                    </div>
+                ";
+            }
+        }
+
+        // === Solid color ===
+        if (preg_match('/^#([a-f0-9]{3}|[a-f0-9]{6})$/i', $value)) {
+            return "
+                <div style='display:flex;align-items:center;gap:10px'>
+                    <div style='
+                        width:28px;
+                        height:28px;
+                        background:{$value};
+                        border:1px solid #ccc;
+                        border-radius:4px;
+                    '></div>
+                    <code>{$value}</code>
+                </div>
+            ";
+        }
+
+        return $value;
+    }
 }

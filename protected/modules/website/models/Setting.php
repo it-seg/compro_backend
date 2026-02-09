@@ -45,7 +45,8 @@ class Setting extends CActiveRecord
             'instagram__username',
             'facebook_username',
             'logo',
-            'hero_interval'
+            'hero_interval',
+            'instagramToken'
         ];
         $criteria->addNotInCondition('`key`', $excludeTypes);
 

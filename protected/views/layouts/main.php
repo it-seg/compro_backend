@@ -270,7 +270,7 @@ $canWebsiteSetting =
                                         <li class="nav-item">
                                             <a class="nav-link <?= $controllerId==='setting'?'active':'' ?>"
                                                href="<?= Yii::app()->createUrl('website/setting/index') ?>">
-                                                Setting
+                                                Setting Color
                                             </a>
                                         </li>
                                     <?php endif; ?>
@@ -279,7 +279,7 @@ $canWebsiteSetting =
                                         <li class="nav-item">
                                             <a class="nav-link <?= $controllerId==='header'?'active':'' ?>"
                                                href="<?= Yii::app()->createUrl('website/header/index') ?>">
-                                                Header
+                                                Header Language
                                             </a>
                                         </li>
                                     <?php endif; ?>

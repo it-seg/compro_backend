@@ -10,8 +10,8 @@ $grouped = [
     ],
 
     'Website Setting' => [
-        'Setting' => ['WEBSITE|SETTING', 'WEBSITE|SETTING|UPDATE'],
-        'Header' => ['WEBSITE|HEADER', 'WEBSITE|HEADER|UPDATE'],
+        'Setting Background Color' => ['WEBSITE|SETTING', 'WEBSITE|SETTING|UPDATE'],
+        'Header Language' => ['WEBSITE|HEADER', 'WEBSITE|HEADER|UPDATE'],
         'Navigation' => ['WEBSITE|NAVIGATION', 'WEBSITE|NAVIGATION|UPDATE'],
         'Homepage' => ['WEBSITE|HOMEPAGE', 'WEBSITE|HOMEPAGE|UPDATE'],
         'Image' => [
@@ -24,7 +24,7 @@ $grouped = [
     ],
 
     'Website Content' => [
-        'Carousel' => ['WEBSITE|CAROUSEL', 'WEBSITE|CAROUSEL|CREATE', 'WEBSITE|CAROUSEL|DELETE'],
+        'Carousel Images' => ['WEBSITE|CAROUSEL', 'WEBSITE|CAROUSEL|CREATE', 'WEBSITE|CAROUSEL|DELETE'],
         'About' => ['WEBSITE|ABOUT', 'WEBSITE|ABOUT|CREATE', 'WEBSITE|ABOUT|DELETE'],
         'Contact' => ['WEBSITE|CONTACT', 'WEBSITE|CONTACT|CREATE', 'WEBSITE|CONTACT|DELETE'],
         'Gallery' => ['WEBSITE|GALLERY', 'WEBSITE|GALLERY|CREATE', 'WEBSITE|GALLERY|DELETE'],
@@ -83,7 +83,7 @@ $actionLabels = [
 
                             <?php foreach ($modules as $moduleName => $permissions): ?>
                                 <tr>
-                                    <td width="160" class="fw-semibold">
+                                    <td width="250" class="fw-semibold">
                                         <?= $moduleName ?>
                                     </td>
                                     <td>

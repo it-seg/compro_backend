@@ -23,9 +23,9 @@ class Header extends CActiveRecord
     {
         return [
             'id'=>'ID',
-            'content'=>'Content',
-            'content_english'=>'English Content',
-            'type'=>'Type',
+            'content'=>'Indonesia',
+            'content_english'=>'English',
+            'type'=>'Header',
             'updated_at'=>'Updated At',
         ];
     }

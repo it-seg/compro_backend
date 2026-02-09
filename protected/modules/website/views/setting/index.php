@@ -27,16 +27,19 @@ $groups = [
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        <h5 class="mb-3"><?= CHtml::encode($title) ?> Page</h5>
+                        <h5 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Background Page</h5>
 
                         <!-- Gradient Preview -->
                         <div style="
-                                height:120px;
+                                width:100%;
+                                aspect-ratio: 210 / 297;
+                                max-width: 280px;
+                                margin: 0 auto 12px;
                                 border-radius:8px;
                                 background: linear-gradient(180deg, <?= $bg1->value ?>, <?= $bg2->value ?>);
                                 border:1px solid #ddd;
-                                margin-bottom:12px;
                                 "></div>
+
 
                         <!-- Color Info -->
                         <div class="d-flex justify-content-between align-items-center">

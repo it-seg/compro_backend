@@ -30,12 +30,15 @@ if ($isBg1) {
 
             <!-- GRADIENT PREVIEW -->
             <div id="preview" style="
-                    height:180px;
+                    width:100%;
+                    aspect-ratio: 210 / 297;
+                    max-width: 340px;
+                    margin: 0 auto 32px;
                     border-radius:14px;
                     background:linear-gradient(180deg, <?= $model->value ?>, <?= $pair->value ?>);
                     border:1px solid #ddd;
-                    margin-bottom:32px;
                     "></div>
+
 
             <!-- COLOR 1 -->
             <div class="mb-4">

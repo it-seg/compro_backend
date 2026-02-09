@@ -23,22 +23,45 @@ $isLoginPage =
     Yii::app()->controller->id === 'site' &&
     Yii::app()->controller->action->id === 'login';
 
+$isDashboard =
+    Yii::app()->controller->id === 'site' &&
+    Yii::app()->controller->action->id === 'index';
+
 $moduleId     = Yii::app()->controller->module->id ?? null;
 $controllerId = Yii::app()->controller->id ?? null;
 
 /* ===============================
    WEBSITE CONTROLLER GROUPING
 ================================ */
-$websiteContentControllers = ['events','menu','news','space'];
-$websiteSettingControllers = ['image','setting','header','navigation'];
+$websiteContentControllers = [
+    'carousel',
+    'about',
+    'contact',
+    'gallery',
+    'music',
+    'events',
+    'news',
+    'menu',
+    'space',
+];
+
+$websiteSettingControllers = ['image','setting','header','navigation', 'homepage'];
 
 $isWebsiteContentActive =
-    $moduleId === 'website' &&
-    in_array($controllerId, $websiteContentControllers);
+    $isDashboard ||
+    (
+        $moduleId === 'website' &&
+        in_array($controllerId, $websiteContentControllers)
+    );
+
 
 $isWebsiteSettingActive =
-    $moduleId === 'website' &&
-    in_array($controllerId, $websiteSettingControllers);
+    $isDashboard ||
+    (
+        $moduleId === 'website' &&
+        in_array($controllerId, $websiteSettingControllers)
+    );
+
 
 /* ===============================
    WEBSITE PERMISSION CHECK
@@ -61,7 +84,10 @@ $canWebsiteSetting =
     AuthHelper::can('WEBSITE|HOMEPAGE');
 ?>
 
-<?php if (!$isLoginPage): ?>
+<?php if (!$isLoginPage):
+
+
+?>
 
     <!-- TOP NAVBAR -->
     <nav class="navbar navbar-dark bg-dark px-3">
@@ -304,9 +330,6 @@ $canWebsiteSetting =
             sidebar.style.marginLeft === '-250px' ? '0' : '-250px';
     });
 
-    if (window.innerWidth < 768) {
-        document.getElementById('sidebar')?.style.setProperty('margin-left','-250px');
-    }
 </script>
 
 </body>

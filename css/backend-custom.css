@@ -27,3 +27,25 @@
   word-break: break-word;
   white-space: normal;
 }
+
+/* === DESKTOP: menu selalu terbuka ===
+@media (min-width: 768px) {
+  #menuWebsiteContent,
+  #menuWebsiteSetting {
+    display: block !important;
+    height: auto !important;
+    visibility: visible !important;
+  }
+
+  .nav-link[data-bs-toggle="collapse"] {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .nav-link .bi-chevron-down {
+    display: none;
+  }
+}
+
+ */
+

@@ -24,6 +24,7 @@ class Homepage extends CActiveRecord
             ['section_key', 'required'],
             ['section_key', 'length', 'max'=>50],
             ['is_active, sort_order', 'numerical', 'integerOnly'=>true],
+            ['is_active', 'in', 'range'=>[0,1]],
 
             // search
             ['id, section_key, is_active, sort_order', 'safe', 'on'=>'search'],
@@ -63,7 +64,7 @@ class Homepage extends CActiveRecord
         }
 
         // default values
-        if ($this->is_active === null) {
+        if ($this->isNewRecord && $this->is_active === null) {
             $this->is_active = 1;
         }
 

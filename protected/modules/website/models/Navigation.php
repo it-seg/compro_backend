@@ -17,6 +17,7 @@ class Navigation extends CActiveRecord
             ['label', 'length', 'max'=>100],
             ['url', 'length', 'max'=>200],
             ['sort_order', 'numerical', 'integerOnly'=>true],
+            ['is_active', 'in', 'range'=>[0,1]],
             ['id, label, url, sort_order, is_active', 'safe', 'on'=>'search'],
         ];
     }
@@ -58,6 +59,10 @@ class Navigation extends CActiveRecord
                 $this->sort_order = 0;
 
             return true;
+        }
+        // default values
+        if ($this->isNewRecord && $this->is_active === null) {
+            $this->is_active = 1;
         }
         return false;
     }

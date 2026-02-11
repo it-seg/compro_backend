@@ -31,27 +31,13 @@
                 ?>
 
                 <div class="d-flex gap-4">
-                    <div class="form-check">
-                        <?php echo $form->radioButton($model, 'is_active', [
-                            'value' => 1,
-                            'class' => 'form-check-input',
-                            'id' => 'is_active_1'
-                        ]); ?>
-                        <label class="form-check-label fw-medium" for="is_active_1">
-                            Aktif
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <?php echo $form->radioButton($model, 'is_active', [
-                            'value' => 0,
-                            'class' => 'form-check-input',
-                            'id' => 'is_active_0'
-                        ]); ?>
-                        <label class="form-check-label fw-medium text-muted" for="is_active_0">
-                            Tidak Aktif
-                        </label>
-                    </div>
+                    <?php echo $form->radioButtonList($model, 'is_active', [
+                        1 => 'Aktif',
+                        0 => 'Tidak Aktif',
+                    ], [
+                        'separator' => ' ',
+                        'class' => 'form-check-input'
+                    ]); ?>
                 </div>
 
                 <?php echo $form->error($model, 'is_active'); ?>

@@ -36,11 +36,11 @@ $uiColorGroups = [
             if (!$bg1 || !$bg2) continue;
             ?>
 
-            <div class="col-md-6 mb-4">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        <h5 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Background Page</h5>
+                        <h6 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Background Page</h6>
 
                         <!-- Gradient Preview -->
                         <div style="

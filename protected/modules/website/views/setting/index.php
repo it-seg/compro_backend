@@ -15,6 +15,24 @@ $uiColorGroups = [
     'Carousel Font Color' => [
         'carousel_color_title',
         'carousel_color_sub_title',
+        'color_button_view_menu',
+        'color_button_make_reservation',
+        'color_background_running_text',
+        'running_text_color_title',
+        'navbar_menu_color_title',
+        'about_color_title',
+        'about_color_sub_title',
+        'color_button_about_view_more',
+        'space_color_title',
+        'space_color_sub_title',
+        'menu_color_title',
+        'menu_color_sub_title',
+        'event_color_title',
+        'event_color_sub_title',
+        'news_color_title',
+        'news_color_sub_title',
+        'sosmed_color_title',
+        'footer_color_title',
     ],
     'UI Background & Button Color' => [
         'color_button_view_menu',
@@ -46,7 +64,7 @@ $uiColorGroups = [
                         <div style="
                                 width:100%;
                                 aspect-ratio: 210 / 297;
-                                max-width: 280px;
+                                max-width: 150px;
                                 margin: 0 auto 12px;
                                 border-radius:8px;
                                 background: linear-gradient(180deg, <?= $bg1->value ?>, <?= $bg2->value ?>);

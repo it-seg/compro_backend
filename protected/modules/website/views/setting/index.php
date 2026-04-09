@@ -20,6 +20,8 @@ $uiColorGroups = [
         'color_background_running_text',
         'running_text_color_title',
         'navbar_menu_color_title',
+        'navbar_bg',
+        'navbar_bg_scroll',
         'about_color_title',
         'about_color_sub_title',
         'color_button_about_view_more',

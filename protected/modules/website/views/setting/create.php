@@ -1,6 +1,10 @@
 <?php
 $isBg1 = (!$model->isNewRecord && preg_match('/_bg_1$/', $model->key));
-$isColorOnly = (!$isBg1 && preg_match('/^(carousel_|color_)/', $model->key));
+$isColorOnly = (
+    !$isBg1 &&
+    isset($model->desc) &&
+    strtolower($model->desc) === 'color'
+);
 
 $pair = null;
 

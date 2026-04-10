@@ -76,6 +76,7 @@ $uiColorGroups = [
         'color_button_make_reservation',
         'color_background_running_text',
         'color_button_about_view_more',
+        'color_button_menu_tabs'
     ],
 ];
 ?>

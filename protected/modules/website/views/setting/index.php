@@ -24,6 +24,7 @@ $uiColorGroups = [
         'navbar_bg_scroll',
         'about_color_title',
         'about_color_sub_title',
+        'about_button',
         'color_button_about_view_more',
         'space_color_title',
         'space_color_sub_title',

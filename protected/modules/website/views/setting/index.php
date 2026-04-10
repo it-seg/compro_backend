@@ -47,7 +47,7 @@ $uiColorGroups = [
 ?>
 
 <div class="container mt-4">
-    <h3 class="mb-4">Page Color Setting</h3>
+    <h3 class="mb-4">Page Background Color Setting</h3>
 
     <div class="row">
         <?php foreach ($groups as $title => $keys):
@@ -57,11 +57,11 @@ $uiColorGroups = [
             if (!$bg1 || !$bg2) continue;
             ?>
 
-            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
+            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        <h6 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Background Page</h6>
+                        <h6 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Page</h6>
 
                         <!-- Gradient Preview -->
                         <div style="

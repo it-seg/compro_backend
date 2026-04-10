@@ -1,4 +1,41 @@
-<?php
+<style>
+    .container {
+        font-size: 12px;
+    }
+
+    .container h3 {
+        font-size: 16px;
+    }
+
+    .container h5 {
+        font-size: 14px;
+    }
+
+    .container h6 {
+        font-size: 12px;
+    }
+    .btn-warning {
+        font-size: 11px !important;
+        padding: 1px 6px !important;
+    }
+    /* EDIT BUTTON STYLE */
+    .btn-edit {
+        font-size: 11px;
+        padding: 4px 12px;
+        border-radius: 20px;
+
+        background: linear-gradient(135deg, #f4b400, #e09e00);
+        border: none;
+
+        transition: all .25s ease;
+    }
+
+    /* HOVER EFFECT */
+    .btn-edit:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+</style><?php
 $groups = [
     'About'   => ['about_bg_1', 'about_bg_2'],
     'Contact' => ['contact_bg_1', 'contact_bg_2'],
@@ -12,11 +49,9 @@ $groups = [
 ];
 
 $uiColorGroups = [
-    'Carousel Font Color' => [
+    'Font Color' => [
         'carousel_color_title',
         'carousel_color_sub_title',
-        'color_button_view_menu',
-        'color_button_make_reservation',
         'color_background_running_text',
         'running_text_color_title',
         'navbar_menu_color_title',
@@ -25,7 +60,6 @@ $uiColorGroups = [
         'about_color_title',
         'about_color_sub_title',
         'about_color_view_more',
-        'color_button_about_view_more',
         'space_color_title',
         'space_color_sub_title',
         'menu_color_title',
@@ -37,16 +71,18 @@ $uiColorGroups = [
         'sosmed_color_title',
         'footer_color_title',
     ],
-    'UI Background & Button Color' => [
+    'Button Color' => [
         'color_button_view_menu',
         'color_button_make_reservation',
         'color_background_running_text',
+        'color_button_about_view_more',
     ],
 ];
-
 ?>
 
 <div class="container mt-4">
+
+    <!-- ================= BACKGROUND ================= -->
     <h3 class="mb-4">Page Background Color Setting</h3>
 
     <div class="row">
@@ -61,38 +97,26 @@ $uiColorGroups = [
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        <h6 class="mb-3" style="text-align: center"><?= CHtml::encode($title) ?> Page</h6>
+                        <h6 class="mb-3 text-center">
+                            <?= CHtml::encode($title) ?> Page
+                        </h6>
+                        <div class="text-center mb-2">
+                            <a href="<?= $this->createUrl('update', ['id'=>$bg1->id]) ?>"
+                               class="btn btn-warning btn-edit">
+                                Edit
+                            </a>
+                        </div>
 
                         <!-- Gradient Preview -->
                         <div style="
                                 width:100%;
-                                aspect-ratio: 210 / 297;
-                                max-width: 150px;
-                                margin: 0 auto 12px;
+                                aspect-ratio:210/297;
+                                max-width:150px;
+                                margin:0 auto 12px;
                                 border-radius:8px;
-                                background: linear-gradient(180deg, <?= $bg1->value ?>, <?= $bg2->value ?>);
+                                background:linear-gradient(180deg, <?= $bg1->value ?>, <?= $bg2->value ?>);
                                 border:1px solid #ddd;
                                 "></div>
-
-
-                        <!-- Color Info -->
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <small><?= $bg1->key ?>:</small>
-                                <code><?= $bg1->value ?></code><br>
-                                <small><?= $bg2->key ?>:</small>
-                                <code><?= $bg2->value ?></code>
-                            </div>
-
-                            <!-- Edit Button -->
-                            <div class="text-end">
-                                <a href="<?= $this->createUrl('update', ['id'=>$bg1->id]) ?>"
-                                   class="btn btn-sm btn-warning">
-                                    Edit
-                                </a>
-                            </div>
-
-                        </div>
 
                     </div>
                 </div>
@@ -101,51 +125,84 @@ $uiColorGroups = [
         <?php endforeach; ?>
     </div>
 
-    <h3 class="mb-4 mt-5">Font Color & Background Color</h3>
+
+    <!-- ================= FONT & BUTTON ================= -->
+    <h3 class="mb-4 mt-5">Font & Button Color</h3>
 
     <div class="row">
+
         <?php foreach ($uiColorGroups as $title => $keys): ?>
-            <div class="col-md-6 mb-4">
+
+            <?php
+            // GRID LAYOUT
+            if ($title === 'Font Color') {
+                $colClass = 'col-lg-8 col-md-12';
+            } else {
+                $colClass = 'col-lg-4 col-md-12';
+            }
+            ?>
+
+            <div class="<?= $colClass ?> mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        <h5 class="mb-3 text-center"><?= CHtml::encode($title) ?></h5>
+                        <h5 class="mb-3 text-center">
+                            <?= CHtml::encode($title) ?>
+                        </h5>
 
-                        <?php foreach ($keys as $key):
-                            if (!isset($settings[$key])) continue;
-                            $item = $settings[$key];
-                            ?>
-                            <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="row">
+                            <?php foreach ($keys as $key):
 
-                                <div class="d-flex align-items-center gap-2">
-                                    <!-- Color Preview -->
-                                    <div style="
-                                            width:30px;
-                                            height:30px;
-                                            background:<?= CHtml::encode($item->value) ?>;
-                                            border:1px solid #ccc;
-                                            border-radius:4px;
-                                            "></div>
+                                if (!isset($settings[$key])) continue;
+                                $item = $settings[$key];
 
-                                    <div>
-                                        <small><?= CHtml::encode($item->key) ?></small><br>
-                                        <code><?= CHtml::encode($item->value) ?></code>
+                                // isi Font Color jadi 2 kolom
+                                $itemClass = ($title === 'Font Color')
+                                    ? 'col-md-6'
+                                    : 'col-12';
+                                ?>
+
+                                <div class="<?= $itemClass ?> mb-3">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <!-- LEFT -->
+                                        <div class="d-flex align-items-center gap-2">
+
+                                            <div style="
+                                                    width:30px;
+                                                    height:30px;
+                                                    background:<?= CHtml::encode($item->value) ?>;
+                                                    border:1px solid #ccc;
+                                                    border-radius:4px;
+                                                    "></div>
+
+                                            <div>
+                                                <small><?= CHtml::encode($item->key) ?></small><br>
+                                                <code><?= CHtml::encode($item->value) ?></code>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- RIGHT -->
+                                        <a href="<?= $this->createUrl('update', ['id'=>$item->id]) ?>"
+                                           class="btn btn-sm btn-warning">
+                                            Edit
+                                        </a>
+
                                     </div>
+
                                 </div>
 
-                                <!-- Edit -->
-                                <a href="<?= $this->createUrl('update', ['id'=>$item->id]) ?>"
-                                   class="btn btn-sm btn-warning">
-                                    Edit
-                                </a>
-
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
 
                     </div>
                 </div>
             </div>
+
         <?php endforeach; ?>
+
     </div>
 
 </div>

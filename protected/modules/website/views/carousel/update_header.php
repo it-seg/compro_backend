@@ -55,7 +55,27 @@ $isParagraph = in_array($model->type, [
 
     <?php endif; ?>
 </div>
+<?php
+$hasIsActive = isset($model->is_active);
+$isActiveVal = $hasIsActive ? $model->is_active : 1; // default active
 
+if ($hasIsActive): ?>
+    <div class="mb-3">
+        <label class="form-label">Status</label><br>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   name="Header[is_active]"
+                   value="1"
+                <?= $isActiveVal == 1 ? 'checked' : '' ?>>
+
+            <label class="form-check-label">
+                <?= $isActiveVal == 1 ? 'Active' : 'Non Active' ?>
+            </label>
+        </div>
+    </div>
+<?php endif; ?>
 
 <button class="btn btn-primary">Simpan</button>
 <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">Batal</a>

@@ -86,8 +86,11 @@ $aboutLabels = [
 
     <?php if ($logoImage): ?>
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-12">
-                <div class="card logo-card position-relative">
+            <div class="col-md-3 col-sm-6 col-12" >
+                <div class="card logo-card position-relative" style="background: linear-gradient(145deg, #f8f8f8, #eeeeee);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                     <?php if (AuthHelper::can('WEBSITE|ABOUT|CREATE')): ?>
                         <form action="<?= $this->createUrl('replaceLogo') ?>"
                               method="post"

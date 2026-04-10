@@ -80,15 +80,34 @@ $carouselLabels = [
                         </div>
 
                         <!-- Bahasa ID -->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <small class="text-muted">ID</small><br>
                             <?= CHtml::encode($item->content) ?>
                         </div>
 
                         <!-- Bahasa EN -->
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <small class="text-muted">EN</small><br>
                             <?= CHtml::encode($item->content_english) ?>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-md-2">
+                            <small class="text-muted">Status</small><br>
+                            <?php
+                            $isActive = true;
+                            if (isset($item->is_active)) {
+                                if ($item->is_active === '0' || $item->is_active === 0) {
+                                    $isActive = false;
+                                }
+                            }
+                            ?>
+
+                            <?php if ($isActive): ?>
+                                <span class="badge bg-success">Active</span>
+                            <?php else: ?>
+                                <span class="badge bg-secondary">Non Active</span>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Action -->

@@ -77,8 +77,8 @@ if ($hasIsActive): ?>
     </div>
 <?php endif; ?>
 
-<button class="btn btn-primary">Simpan</button>
-<a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">Batal</a>
+<button class="btn btn-primary">Save</button>
+<a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">Cancel</a>
 
 <?php $this->endWidget(); ?>
 

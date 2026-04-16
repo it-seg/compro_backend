@@ -114,10 +114,15 @@
             </div>
         </div>
     </div>
+    <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-success">
+            <i class="bi bi-save"></i> Save
+        </button>
 
-    <button class="btn btn-success mt-3">
-        <i class="bi bi-save"></i> Save
-    </button>
+        <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">
+            Batal
+        </a>
+    </div>
 
 </div>
 

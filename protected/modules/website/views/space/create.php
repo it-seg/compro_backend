@@ -154,10 +154,14 @@
     <?= $form->errorSummary($model); ?>
 
     <!-- SAVE -->
-    <div class="mt-4">
+    <div class="d-flex gap-2 mt-3">
         <button class="btn btn-success">
             <i class="bi bi-save"></i> Save
         </button>
+
+        <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">
+            Batal
+        </a>
     </div>
 
 </div>
@@ -175,7 +179,7 @@
                 <small class="text-muted">Cover lama tidak akan dihapus.</small>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cnacel</button>
                 <button type="button" class="btn btn-warning" id="confirmSetCoverBtn">
                     Ya, Set Cover
                 </button>

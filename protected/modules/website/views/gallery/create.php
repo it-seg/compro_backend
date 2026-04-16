@@ -8,5 +8,5 @@
     </div>
 
     <button class="btn btn-primary">Upload</button>
-    <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">Kembali</a>
+    <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">Cancel</a>
 </form>

@@ -55,8 +55,6 @@ $uiColorGroups = [
         'color_background_running_text',
         'running_text_color_title',
         'navbar_menu_color_title',
-        'navbar_bg',
-        'navbar_bg_scroll',
         'about_color_title',
         'about_color_sub_title',
         'about_color_view_more',
@@ -71,12 +69,14 @@ $uiColorGroups = [
         'sosmed_color_title',
         'footer_color_title',
     ],
-    'Button Color' => [
+    'Button & Other Color' => [
         'color_button_view_menu',
         'color_button_make_reservation',
         'color_background_running_text',
         'color_button_about_view_more',
-        'color_button_menu_tabs'
+        'color_button_menu_tabs',
+        'navbar_bg',
+        'navbar_bg_scroll',
     ],
 ];
 ?>

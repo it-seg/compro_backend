@@ -160,7 +160,7 @@
         </button>
 
         <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">
-            Batal
+            Cancel
         </a>
     </div>
 

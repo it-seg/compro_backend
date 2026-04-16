@@ -130,10 +130,14 @@ $actionLabels = [
 
         <hr>
 
-        <div class="text-end">
-            <button class="btn btn-success px-4">
+        <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-success">
                 <i class="bi bi-save"></i> Save
             </button>
+
+            <a href="<?= $this->createUrl('index') ?>" class="btn btn-secondary">
+                Cancel
+            </a>
         </div>
 
         <?php $this->endWidget(); ?>

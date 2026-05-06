@@ -207,43 +207,53 @@ class MenuController extends Controller
 
         $fullPath = rtrim($basePath, '/') . '/' . trim($folder, '/');
 
-        $oldFile = $fullPath . '/' . $file;
+        $selectedFile = $fullPath . '/' . $file;
 
-        if (!file_exists($oldFile)) {
+        if (!file_exists($selectedFile)) {
             throw new CHttpException(404, 'File not found');
         }
 
-        // extension file
+        // extension file terpilih
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-        // nama default
-        $newName = 'cover.' . $ext;
+        // cari cover lama
+        $coverFiles = glob($fullPath . '/cover.*');
 
-        // jika sudah ada cover.xxx
-        $counter = 1;
+        foreach ($coverFiles as $coverFile) {
 
-        while (file_exists($fullPath . '/' . $newName)) {
-
-            // skip jika file yang sama
-            if (($fullPath . '/' . $newName) === $oldFile) {
-                break;
+            // skip jika file yg dipilih memang sudah cover
+            if (realpath($coverFile) === realpath($selectedFile)) {
+                echo json_encode(['success'=>true]);
+                Yii::app()->end();
             }
 
-            $newName = 'cover_' . $counter . '.' . $ext;
-            $counter++;
+            $coverExt = strtolower(pathinfo($coverFile, PATHINFO_EXTENSION));
+
+            // cari nama cover_1, cover_2 dst
+            $i = 1;
+
+            do {
+                $newOldCover =
+                    $fullPath . '/cover_' . $i . '.' . $coverExt;
+
+                $i++;
+
+            } while(file_exists($newOldCover));
+
+            rename($coverFile, $newOldCover);
         }
 
-        $newFile = $fullPath . '/' . $newName;
+        // rename file baru jadi cover
+        $newCover = $fullPath . '/cover.' . $ext;
 
-        if (!rename($oldFile, $newFile)) {
-            throw new CHttpException(500, 'Failed rename image');
+        if (!rename($selectedFile, $newCover)) {
+            throw new CHttpException(500, 'Failed set cover');
         }
 
-        chmod($newFile, 0777);
+        chmod($newCover, 0777);
 
         echo json_encode([
-            'success' => true,
-            'name' => $newName
+            'success' => true
         ]);
 
         Yii::app()->end();

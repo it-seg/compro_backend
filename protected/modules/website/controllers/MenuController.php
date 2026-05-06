@@ -87,6 +87,7 @@ class MenuController extends Controller
     private function ensureImageFolder($folder)
     {
         $p = Yii::app()->params;
+
         $basePath = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
             ? $p['websiteImagePath']['windows']
             : $p['websiteImagePath']['linux'];
@@ -94,8 +95,60 @@ class MenuController extends Controller
         $path = rtrim($basePath, '/') . '/' . trim($folder, '/');
 
         if (!is_dir($path)) {
-            mkdir($path, 0755, true);
+
+            mkdir($path, 0777, true);
+
+            chmod($path, 0777);
         }
+    }
+
+    public function actionUploadImage()
+    {
+        if (empty($_FILES['image'])) {
+            throw new CHttpException(400, 'No image uploaded');
+        }
+
+        $folder = Yii::app()->request->getPost('folder');
+
+        if (!$folder) {
+            throw new CHttpException(400, 'Folder missing');
+        }
+
+        $p = Yii::app()->params;
+
+        $basePath = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            ? $p['websiteImagePath']['windows']
+            : $p['websiteImagePath']['linux'];
+
+        $fullPath = rtrim($basePath, '/') . '/' . trim($folder, '/');
+
+        if (!is_dir($fullPath)) {
+            mkdir($fullPath, 0777, true);
+            chmod($fullPath, 0777);
+        }
+
+        $file = CUploadedFile::getInstanceByName('image');
+
+        if (!$file) {
+            throw new CHttpException(400, 'Invalid file');
+        }
+
+        $filename = time() . '_' . preg_replace('/[^A-Za-z0-9.\-_]/', '', $file->name);
+
+        $target = $fullPath . '/' . $filename;
+
+        if (!$file->saveAs($target)) {
+            throw new CHttpException(500, 'Failed save image');
+        }
+
+        chmod($target, 0777);
+
+        echo json_encode([
+            'success' => true,
+            'file' => $filename
+        ]);
+
+        Yii::app()->end();
     }
 
 }

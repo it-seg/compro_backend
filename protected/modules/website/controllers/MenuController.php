@@ -151,4 +151,43 @@ class MenuController extends Controller
         Yii::app()->end();
     }
 
+    public function actionDeleteImage()
+    {
+        $folder = Yii::app()->request->getPost('folder');
+        $file   = Yii::app()->request->getPost('file');
+
+        if (!$folder || !$file) {
+            throw new CHttpException(400, 'Invalid request');
+        }
+
+        $p = Yii::app()->params;
+
+        $basePath = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            ? $p['websiteImagePath']['windows']
+            : $p['websiteImagePath']['linux'];
+
+        $fullPath = rtrim($basePath, '/') . '/' . trim($folder, '/');
+
+        $targetFile = $fullPath . '/' . $file;
+
+        // keamanan
+        if (!file_exists($targetFile)) {
+            throw new CHttpException(404, 'File not found');
+        }
+
+        if (!is_file($targetFile)) {
+            throw new CHttpException(400, 'Invalid file');
+        }
+
+        if (!unlink($targetFile)) {
+            throw new CHttpException(500, 'Failed delete image');
+        }
+
+        echo json_encode([
+            'success' => true
+        ]);
+
+        Yii::app()->end();
+    }
+
 }

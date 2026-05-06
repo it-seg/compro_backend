@@ -190,4 +190,62 @@ class MenuController extends Controller
         Yii::app()->end();
     }
 
+    public function actionSetCover()
+    {
+        $folder = Yii::app()->request->getPost('folder');
+        $file   = basename(Yii::app()->request->getPost('file'));
+
+        if (!$folder || !$file) {
+            throw new CHttpException(400, 'Invalid request');
+        }
+
+        $p = Yii::app()->params;
+
+        $basePath = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            ? $p['websiteImagePath']['windows']
+            : $p['websiteImagePath']['linux'];
+
+        $fullPath = rtrim($basePath, '/') . '/' . trim($folder, '/');
+
+        $oldFile = $fullPath . '/' . $file;
+
+        if (!file_exists($oldFile)) {
+            throw new CHttpException(404, 'File not found');
+        }
+
+        // extension file
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        // nama default
+        $newName = 'cover.' . $ext;
+
+        // jika sudah ada cover.xxx
+        $counter = 1;
+
+        while (file_exists($fullPath . '/' . $newName)) {
+
+            // skip jika file yang sama
+            if (($fullPath . '/' . $newName) === $oldFile) {
+                break;
+            }
+
+            $newName = 'cover_' . $counter . '.' . $ext;
+            $counter++;
+        }
+
+        $newFile = $fullPath . '/' . $newName;
+
+        if (!rename($oldFile, $newFile)) {
+            throw new CHttpException(500, 'Failed rename image');
+        }
+
+        chmod($newFile, 0777);
+
+        echo json_encode([
+            'success' => true,
+            'name' => $newName
+        ]);
+
+        Yii::app()->end();
+    }
 }

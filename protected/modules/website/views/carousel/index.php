@@ -12,12 +12,13 @@ $carouselLabels = [
 ?>
 <style>
     .carousel-admin-card {
-        height: 190px;
+        width: 200px;
+        height: 120px;
     }
 
     .carousel-admin-card img {
-        height: 100%;
         width: 100%;
+        height: 100%;
         object-fit: cover;
     }
 
@@ -28,54 +29,156 @@ $carouselLabels = [
         <div class="alert alert-success"><?php echo Yii::app()->user->getFlash('success'); ?></div>
     <?php endif; ?>
 
-    <h3 class="mb-3">Carousel Images Website</h3>
-
+    <div class="mb-3 border-start border-4 ps-3 py-2 bg-light rounded">
+        <h5 class="mb-0 fw-semibold">
+            Kelola Carousel Website
+        </h5>
+    </div>
+    <hr>
     <div class="row">
-        <?php foreach ($images as $img): ?>
-            <div class="col-md-3 col-sm-4 col-6 mb-3">
-                <div class="card position-relative carousel-admin-card">
 
-                    <?php if ($img['name'] === 'cover.jpg'): ?>
-                        <span class="badge bg-success position-absolute"
-                              style="top:6px;left:6px;z-index:2">
+        <!-- LEFT : IMAGE LIST -->
+        <div class="col-md-4">
+
+            <h6 class="fw-bold mb-3">
+                Carousel Images
+            </h6>
+
+            <div class="row g-2">
+
+                <?php foreach ($images as $img): ?>
+
+                    <div class="col-6">
+
+                        <div class="card position-relative carousel-admin-card">
+
+                            <?php if ($img['name'] === 'cover.jpg'): ?>
+                                <span class="badge bg-success position-absolute"
+                                      style="top:6px;left:6px;z-index:2">
                         COVER
                     </span>
-                    <?php endif; ?>
+                            <?php endif; ?>
 
-                    <?php if (AuthHelper::can('WEBSITE|CAROUSEL|DELETE')): ?>
-                        <a href="<?= $this->createUrl('deleteImage', ['file' => $img['name']]) ?>"
-                           class="btn btn-danger btn-sm position-absolute"
-                           style="top:6px;right:6px;z-index:2"
-                           onclick="return confirm('Hapus gambar ini?')">
-                            ✕
-                        </a>
-                    <?php endif; ?>
+                            <?php if (AuthHelper::can('WEBSITE|CAROUSEL|DELETE')): ?>
+                                <a href="<?= $this->createUrl('deleteImage', ['file' => $img['name']]) ?>"
+                                   class="btn btn-danger btn-sm position-absolute"
+                                   style="top:6px;right:6px;z-index:2"
+                                   onclick="return confirm('Hapus gambar ini?')">
+                                    ✕
+                                </a>
+                            <?php endif; ?>
 
-                    <img src="<?= $img['url'] ?>" class="rounded">
-                </div>
+                            <img src="<?= $img['url'] ?>" class="rounded">
+
+                        </div>
+
+                    </div>
+
+                <?php endforeach; ?>
+
             </div>
-        <?php endforeach; ?>
+
+            <div class="mt-3">
+                <?php if (AuthHelper::can('WEBSITE|CAROUSEL|CREATE')): ?>
+                    <a href="<?= $this->createUrl('create') ?>"
+                       class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i>
+                        Add More Images
+                    </a>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
+        <!-- RIGHT : LIVE PREVIEW -->
+        <div class="col-md-8">
+
+            <div class="position-relative">
+
+                <!-- floating title -->
+                <div class="position-absolute px-3 py-1 rounded"
+                     style="
+                    top:15px;
+                    left:15px;
+                    z-index:10;
+                    background:rgba(0,0,0,.55);
+                    color:#fff;
+                    font-weight:600;
+                    backdrop-filter:blur(4px);
+                 ">
+                    Live Preview
+                </div>
+
+                <div id="websiteCarouselPreview"
+                     class="carousel slide"
+                     data-bs-ride="carousel"
+                     data-bs-interval="1500">
+
+                    <!-- indicators -->
+                    <div class="carousel-indicators">
+                        <?php foreach ($images as $i => $img): ?>
+                            <button type="button"
+                                    data-bs-target="#websiteCarouselPreview"
+                                    data-bs-slide-to="<?= $i ?>"
+                                    class="<?= $i === 0 ? 'active' : '' ?>">
+                            </button>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- slides -->
+                    <div class="carousel-inner rounded overflow-hidden">
+
+                        <?php foreach ($images as $i => $img): ?>
+                            <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+
+                                <img src="<?= $img['url'] ?>"
+                                     class="d-block w-100"
+                                     style="height:420px;object-fit:cover;">
+
+                            </div>
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <!-- prev -->
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#websiteCarouselPreview"
+                            data-bs-slide="prev">
+
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <!-- next -->
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#websiteCarouselPreview"
+                            data-bs-slide="next">
+
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-
-
-    <?php if (AuthHelper::can('WEBSITE|CAROUSEL|CREATE')): ?>
-        <a href="<?= $this->createUrl('create') ?>" class="btn btn-primary mb-3">
-            <i class="bi bi-plus-circle"></i> Add More Images
-        </a>
-    <?php endif; ?>
+    <hr>
 
     <?php if (!empty($carouselItems)): ?>
-        <div class="card mb-4">
-            <div class="card-body py-2">
+        <div class="card mb-3">
+            <div class="card-body p-2 small">
 
                 <h5 class="mb-3">Carousel Content</h5>
 
                 <?php foreach ($carouselItems as $item): ?>
-                    <div class="row align-items-center border-top py-2">
+                    <div class="row align-items-center border-top py-1">
 
                         <!-- Label -->
-                        <div class="col-md-2 fw-bold">
+                        <div class="col-md-2 fw-bold small">
                             <?= $carouselLabels[$item->type] ?? $item->type ?>
                         </div>
 

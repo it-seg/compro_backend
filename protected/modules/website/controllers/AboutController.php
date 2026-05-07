@@ -114,7 +114,7 @@ class AboutController extends Controller
         if (is_dir($fullPath)) {
             foreach (scandir($fullPath) as $file) {
                 if ($file === '.' || $file === '..') continue;
-                if (preg_match('/\.(jpg|jpeg|png|webp)$/i', $file)) {
+                if (preg_match('/\.(jpg|jpeg|png|webp|heic)$/i', $file)) {
                     $fullFile = $fullPath . '/' . $file;
                     $images[] = [
                         'name' => $file,
@@ -204,7 +204,7 @@ class AboutController extends Controller
         if ($file) {
             $ext = strtolower($file->getExtensionName());
 
-            if (!in_array($ext, ['png','jpg','jpeg','webp','svg'])) {
+            if (!in_array($ext, ['png','jpg','jpeg','webp','svg','heic'])) {
                 Yii::app()->user->setFlash('error', 'Format logo tidak didukung');
                 $this->redirect(['index']);
             }

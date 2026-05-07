@@ -81,6 +81,7 @@ $canWebsiteSetting =
     AuthHelper::can('WEBSITE|SETTING') ||
     AuthHelper::can('WEBSITE|HEADER') ||
     AuthHelper::can('WEBSITE|NAVIGATION')||
+    AuthHelper::can('WEBSITE|NAVIGATIONLANDING')||
     AuthHelper::can('WEBSITE|HOMEPAGE');
 ?>
 
@@ -289,6 +290,15 @@ $canWebsiteSetting =
                                             <a class="nav-link <?= $controllerId==='navigation'?'active':'' ?>"
                                                href="<?= Yii::app()->createUrl('website/navigation/index') ?>">
                                                 Navigation
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <?php if (AuthHelper::can('WEBSITE|NAVIGATIONLANDING')): ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link <?= $controllerId==='navigation'?'active':'' ?>"
+                                               href="<?= Yii::app()->createUrl('website/navigationLanding/index') ?>">
+                                                Navigation Landing
                                             </a>
                                         </li>
                                     <?php endif; ?>

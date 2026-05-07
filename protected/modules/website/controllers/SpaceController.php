@@ -130,7 +130,7 @@ class SpaceController extends Controller
         if (is_dir($fullPath)) {
             foreach (scandir($fullPath) as $file) {
                 if ($file === '.' || $file === '..') continue;
-                if (preg_match('/\.(jpg|jpeg|png|webp)$/i', $file)) {
+                if (preg_match('/\.(jpg|jpeg|png|webp|heic)$/i', $file)) {
                     $images[] = [
                         'name' => $file,
                         'url'  => $baseUrl . '/' . $file,
@@ -181,7 +181,7 @@ class SpaceController extends Controller
         $file = $_FILES['image'];
         $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
-        if (!in_array($ext, ['jpg','jpeg','png','webp'])) {
+        if (!in_array($ext, ['jpg','jpeg','png','webp','heic'])) {
             throw new CHttpException(400, 'Invalid file type');
         }
 
@@ -255,7 +255,7 @@ class SpaceController extends Controller
             $target = $dir . DIRECTORY_SEPARATOR . 'cover.' . $ext;
 
             /* backup cover lama */
-            foreach (['jpg','jpeg','png','webp'] as $e) {
+            foreach (['jpg','jpeg','png','webp','heic'] as $e) {
                 $old = $dir . DIRECTORY_SEPARATOR . 'cover.' . $e;
                 if (is_file($old)) {
                     rename(

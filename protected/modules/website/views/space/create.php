@@ -179,7 +179,7 @@
                 <small class="text-muted">Cover lama tidak akan dihapus.</small>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cnacel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-warning" id="confirmSetCoverBtn">
                     Ya, Set Cover
                 </button>

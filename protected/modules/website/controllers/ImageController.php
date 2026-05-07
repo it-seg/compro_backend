@@ -107,7 +107,7 @@ class ImageController extends Controller
             . ($relativePath ? '/' . $relativePath : '');
 
         $items = [];
-        $imageExt = ['jpg','jpeg','png','gif','webp','svg'];
+        $imageExt = ['jpg','jpeg','png','gif','webp','svg','heic'];
 
         foreach (scandir($currentPath) as $item) {
             if ($item === '.' || $item === '..') {

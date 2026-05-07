@@ -21,6 +21,12 @@
             Navigation
         </a>
         <?php endif; ?>
+        <?php if (AuthHelper::can('WEBSITE|NAVIGATIONLANDING')): ?>
+            <a class="btn btn-primary"
+               href="<?php echo Yii::app()->createUrl('website/navigationLanding/index'); ?>">
+                Navigation Landing
+            </a>
+        <?php endif; ?>
         <?php if (AuthHelper::can('WEBSITE|EVENTS')): ?>
         <a class="btn btn-primary"
            href="<?php echo Yii::app()->createUrl('website/events/index'); ?>">

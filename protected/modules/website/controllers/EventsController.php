@@ -21,7 +21,7 @@ class EventsController extends Controller
 
             if ($imageFile) {
                 $ext = strtolower($imageFile->extensionName);
-                if (!in_array($ext, ['jpg','jpeg','png','webp'])) {
+                if (!in_array($ext, ['jpg','jpeg','png','webp','heic'])) {
                     $model->addError('image', 'Invalid image format');
                 } else {
                     $fileName = time().'_'.$imageFile->name;
@@ -55,7 +55,7 @@ class EventsController extends Controller
 
             if ($imageFile) {
                 $ext = strtolower($imageFile->extensionName);
-                if (in_array($ext,['jpg','jpeg','png','webp'])) {
+                if (in_array($ext,['jpg','jpeg','png','webp','heic'])) {
                     $fileName = time().'_'.$imageFile->name;
                     $folder = $this->getWebsiteImagePath().'/events';
                     if (!is_dir($folder)) mkdir($folder,0755,true);

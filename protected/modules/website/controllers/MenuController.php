@@ -73,7 +73,7 @@ class MenuController extends Controller
         if (is_dir($fullPath)) {
             foreach (scandir($fullPath) as $file) {
                 if ($file === '.' || $file === '..') continue;
-                if (preg_match('/\.(jpg|jpeg|png|webp)$/i', $file)) {
+                if (preg_match('/\.(jpg|jpeg|png|webp|heic)$/i', $file)) {
                     $images[] = [
                         'name' => $file,
                         'url'  => $baseUrl . '/' . $file,

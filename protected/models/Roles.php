@@ -50,6 +50,8 @@ class Roles extends CActiveRecord
             'WEBSITEIMAGES|SETCOVER' => 'Website Images Set Cover',
             'WEBSITEIMAGES|RENAME' => 'Website Images Rename',
             'WEBSITEIMAGES|DELETE' => 'Website Images Delete',
+            'WEBSITE|NAVIGATIONLANDING' => 'Website Navigation Landing',
+            'WEBSITE|NAVIGATIONLANDING|CREATE' => 'Website Navigation Landing Create',
         ];
     }
 

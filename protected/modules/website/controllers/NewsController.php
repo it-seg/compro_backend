@@ -13,7 +13,7 @@ class NewsController extends Controller
             if ($imageFile) {
                 $ext = strtolower($imageFile->extensionName);
 
-                if (!in_array($ext, ['jpg','jpeg','png','webp'])) {
+                if (!in_array($ext, ['jpg','jpeg','png','webp','heic'])) {
                     $model->addError('image', 'Invalid image format');
                 } else {
                     $fileName = time() . '_' . preg_replace('/\s+/', '-', $imageFile->name);
@@ -55,7 +55,7 @@ class NewsController extends Controller
             if ($imageFile) {
                 $ext = strtolower($imageFile->extensionName);
 
-                if (!in_array($ext, ['jpg','jpeg','png','webp'])) {
+                if (!in_array($ext, ['jpg','jpeg','png','webp','heic'])) {
                     $model->addError('image', 'Invalid image format');
                 } else {
                     $fileName = time() . '_' . preg_replace('/\s+/', '-', $imageFile->name);

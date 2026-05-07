@@ -13,6 +13,7 @@ $grouped = [
         'Setting Background Color' => ['WEBSITE|SETTING', 'WEBSITE|SETTING|UPDATE'],
         'Header Language' => ['WEBSITE|HEADER', 'WEBSITE|HEADER|UPDATE'],
         'Navigation' => ['WEBSITE|NAVIGATION', 'WEBSITE|NAVIGATION|UPDATE'],
+        'Navigation Landing' => ['WEBSITE|NAVIGATIONLANDING', 'WEBSITE|NAVIGATIONLANDING|UPDATE'],
         'Homepage' => ['WEBSITE|HOMEPAGE', 'WEBSITE|HOMEPAGE|UPDATE'],
         'Image' => [
             'WEBSITEIMAGES',

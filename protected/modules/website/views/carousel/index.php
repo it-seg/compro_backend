@@ -12,7 +12,7 @@ $carouselLabels = [
 ?>
 <style>
     .carousel-admin-card {
-        width: 200px;
+        width: 100%;
         height: 120px;
     }
 
@@ -48,7 +48,7 @@ $carouselLabels = [
 
                 <?php foreach ($images as $img): ?>
 
-                    <div class="col-6">
+                    <div class="col-6 mb-2">
 
                         <div class="card position-relative carousel-admin-card">
 

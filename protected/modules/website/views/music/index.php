@@ -18,7 +18,7 @@
         <div class="alert alert-success"><?php echo Yii::app()->user->getFlash('success'); ?></div>
     <?php endif; ?>
 
-    <h3 class="mb-3">Galery Images</h3>
+    <h3 class="mb-3">Music Images</h3>
     <?php if (AuthHelper::can('WEBSITE|GALLERY|CREATE')): ?>
         <a href="<?= $this->createUrl('create') ?>" class="btn btn-primary mb-3">
             <i class="bi bi-plus-circle"></i> Add More Images

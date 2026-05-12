@@ -10,7 +10,8 @@ class CarouselController extends Controller
             'view_menus',
             'sub_view_menus',
             'hero_reservation',
-            'sub_hero_reservation'
+            'sub_hero_reservation',
+            'running_text'
         ];
 
         $criteria = new CDbCriteria();

@@ -51,7 +51,7 @@ class Header extends CActiveRecord
             'sub_view_menus',
             'hero_reservation',
             'sub_hero_reservation',
-            'running_text',
+            //'running_text',
             'space_title',
             'space_sub_title',
             'space_view_button',

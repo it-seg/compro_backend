@@ -23,6 +23,16 @@ class AboutController extends Controller
             ];
         }
 
+        $logoPathFooter = rtrim($basePath, '/') . '/logo_footer.png';
+        $logoUrlFooter  = $baseUrl . '/logo_footer.png';
+        $logoImageFooter = null;
+        if (is_file($logoPathFooter)) {
+            $logoImageFooter = [
+                'name' => 'logo_footer.png',
+                'url'  => $logoUrlFooter . '?v=' . filemtime($logoPathFooter),
+            ];
+        }
+
         $types = [
             'about_sub_title',
             'about_title',
@@ -39,6 +49,7 @@ class AboutController extends Controller
             'images' => $images,
             'aboutItems' => $aboutItems,
             'logoImage'   => $logoImage,
+            'logoImageFooter'   => $logoImageFooter,
         ]);
     }
 
@@ -205,6 +216,42 @@ class AboutController extends Controller
             $ext = strtolower($file->getExtensionName());
 
             if (!in_array($ext, ['png','jpg','jpeg','webp','svg','heic'])) {
+                Yii::app()->user->setFlash('error', 'Format logo tidak didukung');
+                $this->redirect(['index']);
+            }
+
+            // overwrite logo lama
+            $file->saveAs($logoPath, true);
+
+            Yii::app()->user->setFlash('success', 'Logo berhasil diperbarui');
+        }
+
+        $this->redirect(['index']);
+    }
+
+    public function actionReplaceLogoFooter()
+    {
+        if (!AuthHelper::can('WEBSITE|ABOUT|CREATE')) {
+            throw new CHttpException(403, 'Forbidden');
+        }
+
+        if (!isset($_FILES['logo_footer'])) {
+            $this->redirect(['index']);
+        }
+
+        $p = Yii::app()->params;
+        $basePath = (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+            ? $p['websiteImagePath']['windows']
+            : $p['websiteImagePath']['linux'];
+
+        $logoPath = rtrim($basePath, '/') . '/logo_footer.png';
+
+        $file = CUploadedFile::getInstanceByName('logo_footer');
+
+        if ($file) {
+            $ext = strtolower($file->getExtensionName());
+
+            if (!in_array($ext, ['png'])) {
                 Yii::app()->user->setFlash('error', 'Format logo tidak didukung');
                 $this->redirect(['index']);
             }

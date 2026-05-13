@@ -148,9 +148,40 @@ class AboutController extends Controller
         }
 
         if (isset($_POST['Header'])) {
+
             $model->attributes = $_POST['Header'];
+
+            /*
+             * SUPPORT HTML CONTENT
+             * untuk about_value_p1 & about_value_p2
+             */
+            if (in_array($model->type, [
+                'about_value_p1',
+                'about_value_p2'
+            ])) {
+
+                $model->content = $_POST['Header']['content'];
+                $model->content_english = $_POST['Header']['content_english'];
+            }
+
+            /*
+             * STATUS ACTIVE / NON ACTIVE
+             */
+            if (isset($model->is_active)) {
+
+                $model->is_active =
+                    isset($_POST['Header']['is_active'])
+                        ? (int)$_POST['Header']['is_active']
+                        : 0;
+            }
+
             if ($model->save()) {
-                Yii::app()->user->setFlash('success', 'Konten berhasil diperbarui');
+
+                Yii::app()->user->setFlash(
+                    'success',
+                    'Konten berhasil diperbarui'
+                );
+
                 $this->redirect(['index']);
             }
         }

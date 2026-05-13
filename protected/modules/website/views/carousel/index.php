@@ -90,6 +90,8 @@ $carouselLabels = [
 
         </div>
 
+
+
         <!-- RIGHT : LIVE PREVIEW -->
         <div class="col-md-8">
 
@@ -108,6 +110,26 @@ $carouselLabels = [
                  ">
                     Live Preview
                 </div>
+
+                <?php
+                $runningText = '';
+
+                foreach ($carouselItems as $item) {
+
+                    $isActive = true;
+
+                    if (isset($item->is_active)) {
+                        if ($item->is_active === '0' || $item->is_active === 0) {
+                            $isActive = false;
+                        }
+                    }
+
+                    if ($item->type === 'running_text' && $isActive) {
+                        $runningText = $item->content;
+                        break;
+                    }
+                }
+                ?>
 
                 <div id="websiteCarouselPreview"
                      class="carousel slide"
@@ -160,9 +182,55 @@ $carouselLabels = [
 
                 </div>
 
+                <!-- RUNING TEXT -->
+                <?php if (!empty($runningText)): ?>
+
+                    <div class="position-absolute w-100"
+                         style="
+            bottom:0;
+            left:0;
+            z-index:9;
+            background:rgba(0,0,0,.78);
+            color:#fff;
+            overflow:hidden;
+            height:42px;
+            display:flex;
+            align-items:center;
+            white-space:nowrap;
+         ">
+
+                        <marquee behavior="scroll"
+                                 direction="left"
+                                 scrollamount="5"
+                                 scrolldelay="20"
+                                 style="
+                    font-size:15px;
+                    font-weight:500;
+                    letter-spacing:3px;
+                    text-transform:uppercase;
+                 ">
+
+                            <?= CHtml::encode($runningText) ?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <?= CHtml::encode($runningText) ?>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+
+                            <?= CHtml::encode($runningText) ?>
+
+                        </marquee>
+
+                    </div>
+
+                <?php endif; ?>
+
             </div>
 
+
+
         </div>
+
+
 
     </div>
 

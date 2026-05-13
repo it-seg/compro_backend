@@ -254,7 +254,7 @@
         </h4>
 
         <p>
-            Buat, edit, dan kelola event website dengan tampilan modern dan mudah digunakan.
+            Buat, edit, dan kelola event website.
         </p>
 
     </div>

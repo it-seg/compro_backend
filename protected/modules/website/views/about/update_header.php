@@ -222,11 +222,6 @@ $title = isset($labels[$model->type])
             <h3>
                 Edit About Content
             </h3>
-
-            <p>
-                Kelola konten halaman About Website dengan tampilan modern dan profesional.
-            </p>
-
             <div class="mini-badge">
                 ✨ <?= CHtml::encode($title) ?>
             </div>

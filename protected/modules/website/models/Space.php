@@ -104,7 +104,6 @@ class Space extends CActiveRecord
     {
         if (parent::beforeSave()) {
             if ($this->isNewRecord && empty($this->id)) {
-                $this->id = Yii::app()->db->createCommand('SELECT UUID()')->queryScalar();
                 $this->created_at = new CDbExpression('NOW()');
             }
 
